@@ -4,14 +4,15 @@
   "description": "",
   "scripts": {
     "build": "gulp",
-    "start": "gulp serve",
-    "postinstall": "npm run build"
+    "start": "gulp serve"
   },
   "author": "Apel",
   "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1"
+  },
   "devDependencies": {
     "browser-sync": "2.26.7",
-    "express": "4.17.1",
     "gulp": "4.0.2",
     "gulp-csso": "3.0.1",
     "gulp-if": "3.0.0",
