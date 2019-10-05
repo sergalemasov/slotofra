@@ -1,0 +1,29 @@
+@import '../vars/colors';
+@import '../vars/dimensions';
+
+.footer {
+    margin-top: auto;
+    background: url('../img/bg-bottom.png') no-repeat center bottom;
+    min-width: @content-width-lg;
+
+    &__content {
+        width: @content-width-lg;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__message {
+        width: 600px;
+        text-align: center;
+        font-size: 18px;
+        color: @footer-message-color;
+        line-height: 22px;
+        margin-top: 29px;
+    }
+
+    &__social {
+        margin: 30px 0 71px;
+    }
+}

@@ -1,0 +1,58 @@
+@import '../vars/dimensions.less';
+@import '../vars/colors.less';
+
+.main {
+    background: url(../img/main-background.png) no-repeat center top;
+    min-width: @content-width-lg;
+
+    &__content {
+        width: @content-width-lg;
+        margin: 0 auto;
+        height: 10px;
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__character {
+        background: url(../img/character-layer.png) no-repeat;
+        position: absolute;
+        top: -10px;
+        left: -48px;
+        width: 1398px;
+        height: 640px;
+        z-index: 1;
+    }
+
+    &__carousel {
+        border-radius: 4px;
+        border: 5px solid @game-border-color;
+        box-shadow: 0px 12px 32px 0px rgba(43, 24, 11, 0.96);
+        width: 869px;
+        height: 488px;
+        margin-top: 60px;
+        margin-left: 208px;
+
+        & img {
+            display: block;
+        }
+    }
+
+    &__play-wrap {
+        position: relative;
+        z-index: 2;
+        width: 376px;
+        height: 106px;
+        background: url(../img/play.png) no-repeat;
+        margin: 1px auto 0;
+        transform: translateX(-13px);
+    }
+
+    &__play {
+        margin: 5px 0 0 9px;
+        width: 358px;
+        height: 90px;
+        cursor: pointer;
+    }
+}

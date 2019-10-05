@@ -1,8 +1,13 @@
-const {src, dest, parallel, watch} = require('gulp');
+const {src, dest, parallel, watch, series} = require('gulp');
 const less = require('gulp-less');
 const pug = require('gulp-pug');
 const imagemin = require('gulp-imagemin');
+const minifyCSS = require('gulp-csso');
 const browserSync = require('browser-sync').create();
+const rimraf = require('rimraf');
+const gulpif = require('gulp-if');
+
+let isProd = false;
 
 function htmlTask() {
     return src('src/html/index.pug')
@@ -13,18 +18,17 @@ function htmlTask() {
 function cssTask() {
     return src('src/styles/style.less')
         .pipe(less())
+        .pipe(gulpif(() => isProd, minifyCSS()))
         .pipe(dest('dist/css'));
 }
 
 function imgTask() {
     return src('src/img/*')
-        .pipe(imagemin())
+        .pipe(gulpif(() => isProd, imagemin()))
         .pipe(dest('dist/img'));
 }
 
 function serve() {
-    parallel(htmlTask, cssTask, imgTask)();
-
     browserSync.init({
         server: {
             baseDir: "./dist"
@@ -39,7 +43,16 @@ function serve() {
         .on('change', browserSync.reload);
 }
 
+function clean(cb) {
+    rimraf('./dist', cb);
+}
+
+function enableProd(cb) {
+    isProd = true;
+    cb();
+}
+
 module.exports = {
-    serve,
-    default: parallel(htmlTask, cssTask, imgTask)
+    serve: series(clean, parallel(htmlTask, cssTask, imgTask), serve),
+    default: series(enableProd, clean, parallel(htmlTask, cssTask, imgTask))
 };

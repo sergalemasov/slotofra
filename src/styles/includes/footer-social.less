@@ -1,0 +1,54 @@
+@import '../vars/colors';
+
+.footer-social {
+    display: flex;
+    width: 920px;
+    justify-content: space-between;
+
+    &__column {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__icon {
+        display: block;
+        background-repeat: no-repeat;
+        height: 101px;
+        width: 101px;
+
+        &--fb {
+            background-image: url(../img/footer-fb.png);
+        }
+
+        &--vk {
+            background-image: url(../img/footer-vk.png);
+        }
+
+        &--mail {
+            background-image: url(../img/footer-mail.png);
+        }
+    }
+
+    &__icon-link {
+        cursor: pointer;
+        display: block;
+        width: 95px;
+        height: 95px;
+        margin: 2px 0 0 3px;
+    }
+
+    &__text-link {
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        color: @footer-text-link-color;
+        font-size: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 23px;
+        line-height: 14px;
+    }
+}

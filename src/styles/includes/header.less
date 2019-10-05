@@ -1,16 +1,37 @@
+@import '../vars/dimensions.less';
+
 .header {
-    background-image: url(../img/bg-top.png);
-    background-repeat: no-repeat;
+    background: url(../img/bg-top.png) no-repeat center top;
     height: 91px;
+    min-width: @content-width-lg;
 
     &__content {
-        width: 1200px;
+        width: @content-width-lg;
         height: 100%;
         margin: 0 auto;
         display: flex;
+        position: relative;
+    }
+
+    &__social {
+        margin-top: 9px;
+        margin-left: 122px;
     }
 
     &__nav {
         margin-left: auto;
+    }
+
+    &__logo {
+        cursor: pointer;
+        width: 349px;
+        height: 139px;
+        background: url(../img/logo.png);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: calc(50% - 9px);
+        top: 9px;
+        transform: translateX(-50%);
+        z-index: 2;
     }
 }
