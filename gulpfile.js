@@ -1,4 +1,5 @@
 const {src, dest, parallel, watch, series} = require('gulp');
+const {join} = require('path');
 const less = require('gulp-less');
 const pug = require('gulp-pug');
 const imagemin = require('gulp-imagemin');
@@ -6,6 +7,9 @@ const minifyCSS = require('gulp-csso');
 const browserSync = require('browser-sync').create();
 const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const jsOrder = require('./src/scripts/order.js');
 
 let isProd = false;
 
@@ -28,6 +32,13 @@ function imgTask() {
         .pipe(dest('dist/img'));
 }
 
+function jsTask() {
+    return src(jsOrder.map(s => join('src/scripts', s)))
+        .pipe(concat('index.js'))
+        .pipe(gulpif(() => isProd, uglify()))
+        .pipe(dest('dist/js'));
+}
+
 function serve() {
     browserSync.init({
         server: {
@@ -38,6 +49,7 @@ function serve() {
     watch('src/img/*', imgTask);
     watch('src/styles/**/*.less', cssTask);
     watch('src/html/**/*.pug', htmlTask);
+    watch('src/scripts/**/*.js', jsTask)
 
     watch("dist/**/*")
         .on('change', browserSync.reload);
@@ -53,6 +65,6 @@ function enableProd(cb) {
 }
 
 module.exports = {
-    serve: series(clean, parallel(htmlTask, cssTask, imgTask), serve),
-    default: series(enableProd, clean, parallel(htmlTask, cssTask, imgTask))
+    serve: series(clean, parallel(htmlTask, cssTask, imgTask, jsTask), serve),
+    default: series(enableProd, clean, parallel(htmlTask, cssTask, imgTask, jsTask))
 };
