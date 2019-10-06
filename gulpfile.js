@@ -9,13 +9,15 @@ const rimraf = require('rimraf');
 const gulpif = require('gulp-if');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
 const jsOrder = require('./src/scripts/order.js');
 
 let isProd = false;
 
 function htmlTask() {
-    return src('src/html/index.pug')
+    return src(['index.pug', 'privacy-policy.pug'].map(s => join('src/html', s)))
         .pipe(pug())
+        .pipe(rename(path => path.dirname = ''))
         .pipe(dest('dist'));
 }
 
