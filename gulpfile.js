@@ -22,9 +22,10 @@ function htmlTask() {
 }
 
 function cssTask() {
-    return src('src/styles/style.less')
+    return src(['index.less', 'privacy-policy.less'].map(s => join('src/styles', s)))
         .pipe(less())
         .pipe(gulpif(() => isProd, minifyCSS()))
+        .pipe(rename(path => path.dirname = ''))
         .pipe(dest('dist/css'));
 }
 

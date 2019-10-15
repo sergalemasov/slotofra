@@ -1,0 +1,32 @@
+@import '../vars/colors';
+
+.privacy-policy-main {
+    min-width: 1200px;
+    background-size: cover;
+    background-repeat: repeat-y;
+    position: relative;
+    font-size: 20px;
+    color: @blank-color;
+
+    &__background {
+        width: 1920px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: url(../img/privacy-background.png) center top;
+    }
+
+    &__text {
+        position: relative;
+        z-index: 1;
+        width: 1200px;
+        margin: 50px auto;
+    }
+
+    &__border {
+        height: 20px;
+        background: url(../img/policy-border.png) no-repeat center top;
+    }
+}
