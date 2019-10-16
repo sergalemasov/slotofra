@@ -5,7 +5,6 @@
     background-size: cover;
     background-repeat: repeat-y;
     position: relative;
-    font-size: 20px;
     color: @blank-color;
 
     &__background {
@@ -22,11 +21,51 @@
         position: relative;
         z-index: 1;
         width: 1200px;
-        margin: 50px auto;
+        margin: 80px auto;
+
+        & p,
+        & li {
+            font-size: 17px;
+            line-height: 22px;
+        }
+
+        & li {
+            margin: 10px 0;
+        }
+
+        & a {
+            text-decoration: none;
+            color: @blank-color;
+            transition: color 0.1s ease;
+
+            &:hover {
+                color: darken(@blank-color, 20%);
+            }
+        }
+
+        & h3 {
+            margin: 30px 0;
+        }
+    }
+
+    &__highlighted {
+        color: @privacy-highlighted-color;
+
+        & a {
+            color: @privacy-highlighted-color;
+
+            &:hover {
+                color: darken(@privacy-highlighted-color, 10%);
+            }
+        }
     }
 
     &__border {
         height: 20px;
         background: url(../img/policy-border.png) no-repeat center top;
+    }
+
+    &__egd {
+        color: @gold-color;
     }
 }
