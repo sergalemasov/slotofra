@@ -29,6 +29,12 @@
         &--mail {
             background-image: url(../img/footer-mail.png);
         }
+
+        &:hover {
+            & + .footer-social__text-link {
+                color: darken(@footer-text-link-color, 5%);
+            }
+        }
     }
 
     &__icon-link {
@@ -50,5 +56,10 @@
         align-items: center;
         margin-top: 23px;
         line-height: 14px;
+        transition: color 0.1s ease;
+
+        &:hover {
+            color: darken(@footer-text-link-color, 5%);
+        }
     }
 }
